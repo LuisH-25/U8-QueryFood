@@ -4,6 +4,10 @@ import {NavbarProps} from '../interface/queryfood'
 import { supabase } from "../supabase/client";
 
 const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
+ 
+
+
+
   console.log("USUARIO: ", supabase.auth.user());
   if (supabase.auth.user() != undefined){
     return (
@@ -28,14 +32,16 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
         <Link className="hover-effect" to="/restaurants">
           <h1>Restaurants</h1>
         </Link>
+
+        <Link className="hover-effect" to="/profile">
+          <h1>Perfil</h1>
+        </Link>
   
-        <Link className="hover-effect" to="/logout">
+        <Link className="hover-effect" to="/login">
           <h1>Salir</h1>
         </Link>
         
-        {/* <Link className="hover-effect" to="/registrar">
-          <h1>Registrar</h1>
-        </Link> */}
+        
       </menu>
     );
   }

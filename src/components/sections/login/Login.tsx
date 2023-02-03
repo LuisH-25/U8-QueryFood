@@ -5,6 +5,7 @@ import { useState } from "react";
 
 
 function FormLogin(){
+  
   const [email, setEmail] = useState("")
   const navigate = useNavigate();
   console.log("USUARIO: ", supabase.auth.user());

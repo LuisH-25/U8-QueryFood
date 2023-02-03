@@ -13,10 +13,10 @@ export interface TestimonialCardProps {
     
 }
 
-export interface MenuCardProps {
+export interface RestaurantCardProps {
     image: string;
     name: string;
-    price: string;
+    calification: number;
     description: string;
 }
 

@@ -1,12 +1,12 @@
 import React from 'react'
-import Menu from "../sections/headingPages/Menu";
+import Restaurants from "../sections/headingPages/Restaurants";
 
 function Restaurantes() {
   return (
     
     <>
         <main >
-          <Menu image={""} name={""} price={""} description={""}/>
+          <Restaurants image={""} name={""} calification={0} description={""}/>
         </main> 
     </>
   );

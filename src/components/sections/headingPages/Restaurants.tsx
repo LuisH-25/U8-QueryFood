@@ -1,49 +1,49 @@
 import React from 'react';
-import Carousel from '../carousel/MenuCarousel';
+import Carousel from '../carousel/RestaurantCarousel';
 import GreekSalad from '../../../assets/food/greek-salad.webp';
 import Bruschetta from '../../../assets/food/bruschetta.jpeg';
 import LemonDessert from '../../../assets/food/lemon-dessert.webp';
-import MenuCard from '../cardInfo/MenuCard';
-import { MenuCardProps } from '../../../interface/queryfood';
+import RestaurandCard from '../cardInfo/RestaurantCard';
+import { RestaurantCardProps } from '../../../interface/queryfood';
 
-const specials = [
+const listRestaurants = [
   {
     image: GreekSalad,
-    name: 'Greek Salad',
-    price: '$12.99',
+    name: 'Restaurante Greek Salad',
+    calification: 5,
     description: 'Refreshing salad, made with tomato, lettuce, feta cheese, and olives. Dressed with salt, hot pepper, and olive oil.'
   },
   {
     image: Bruschetta,
-    name: 'Bruschetta',
-    price: '$16.99',
+    name: 'Restaurant Bruschetta',
+    calification: 3,
     description: 'Toasted bread, topped with tomato, prosciutto, and cheese. Seasoned with salt and olive oil.'
   },
   {
     image: LemonDessert,
-    name: 'Lemon Dessert',
-    price: '$8.50',
+    name: 'Restaurant Lemon Dessert',
+    calification: 4,
     description: 'Fresh baked lemon bread coated in salt and sugar. Powdered in citrus and lemon zest.'
   },
 ];
 
-const Menu: React.FC<MenuCardProps> = () => {
+const Restaurants: React.FC<RestaurantCardProps> = () => {
   
     return (
         <section className="specials">
             <article className="specials-topbar">
-                <h1>Especiales de esta semana</h1>
-                <a className="action-button" href={require('../../../assets/menu.webp')} target="_blank" rel="noreferrer">Online Menu</a>
+                <h1>Lista de Restaurantes</h1>
+                {/* <a className="action-button" href={require('../../../assets/menu.webp')} target="_blank" rel="noreferrer">Lista de Restaurantes</a> */}
             </article>
 
             <section className="specials-cards">
-                {specials.map(special => (
-                    <MenuCard
+                {listRestaurants.map(listRestaurants => (
+                    <RestaurandCard
                         // key={special.name}
-                        image={special.image}
-                        name={special.name}
-                        price={special.price}
-                        description={special.description}
+                        image={listRestaurants.image}
+                        name={listRestaurants.name}
+                        calification={listRestaurants.calification}
+                        description={listRestaurants.description}
                     />
                 ))}
             </section>
@@ -55,4 +55,4 @@ const Menu: React.FC<MenuCardProps> = () => {
     );
 }
 
-export default Menu;
+export default Restaurants;

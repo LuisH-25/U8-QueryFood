@@ -31,10 +31,6 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
           <h1>Restaurants</h1>
         </Link>
 
-        <Link className="hover-effect" to="/profile">
-          <h1>Perfil</h1>
-        </Link>
-  
         <Link className="hover-effect" to="/login">
           <h1>Salir</h1>
         </Link>
@@ -65,6 +61,11 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
     
       <Link className="hover-effect" to="/login">
         <h1>Login</h1>
+      </Link>
+
+      
+      <Link className="hover-effect" to="/profile">
+          <h1>SignUp</h1>
       </Link>
     </menu>
   );

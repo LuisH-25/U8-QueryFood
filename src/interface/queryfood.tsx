@@ -24,7 +24,11 @@ export interface AboutProps {
 
 }
 
-
+export interface FormValues {
+    nombre: string;
+    email: string;
+    password: string;
+  }
 
   
 

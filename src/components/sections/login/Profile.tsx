@@ -1,7 +1,67 @@
-import React, { useState } from "react";
-import { supabase } from "../../../supabase/client";
+import React from "react";
+import { supabase } from '../services/config'
+import useForm from '../../../hooks/useForm'
+import { signUpWithEmail, updateProfile } from '../services/auth'
+import { FormValues } from "../../../interface/queryfood";
+
+const initialState: FormValues = {
+  nombre: '',
+  email: '',
+  password: ''
+}
 
 function FormProfile() {
+
+  const { formValues, handleInputChange, reset } = useForm(initialState)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { email, password, nombre } = formValues;
+    const data = {
+      email: email,
+      password: password
+    };
+    // Add user in users table
+    const result = await signUpWithEmail(data);
+
+    if (result) {
+      const user : any = supabase.auth.user();
+      const data = {
+        id: user.id,
+        full_name: nombre
+      };
+      // Add user's profile in profiles table
+      await updateProfile(data);
+    }
+  };
+
+  return (
+    <div className="reservation-form">
+      <h2 className="">Registrar Usuario</h2>
+      <form onSubmit={handleSubmit}>
+      <div className="reservation-form">
+        <label htmlFor="nombre">Nombres:</label>
+        <input type="text" name='nombre' value={formValues.nombre} onChange={handleInputChange} />
+      </div>
+      <div className="reservation-form">
+        <label htmlFor="email">Email:</label>
+        <input type="text" name='email' value={formValues.email} onChange={handleInputChange} />
+      </div>
+
+      <div className="reservation-form">
+        <label htmlFor="password">Password:</label>
+        <input type="text" name='password' value={formValues.password} onChange={handleInputChange} />
+      </div>
+
+      <button className="action-button" >Registrar</button>
+    </form>
+    </div>
+    
+  );
+};
+
+export default FormProfile;
+
 /*
   const [formData, setFormData] = useState({
     cliente_tipo_documento: "",
@@ -10,14 +70,11 @@ function FormProfile() {
     cliente_telefono: "",
     cliente_propietario: false
   });
-
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-
     if (!formData.cliente_tipo_documento || !formData.cliente_numero_documento || !formData.cliente_nombre || !formData.cliente_telefono) {
       return console.error("Todos los campos son requeridos");
     }
-
     const auth = await getUser();
     const { data, error } = await supabase
       .from("profile")
@@ -45,75 +102,7 @@ function FormProfile() {
       [event.target.id]: event.target.value === "cliente_propietario" ? event.target.checked : event.target.value
     });
   };
-
 */
 
 
-  return (
-    <>
-      <body>
-        <div className="reservation-form ">
-          <h2 className="">Registrar Perfil</h2>
 
-          <form>
-            <div className="reservation-form">
-              <legend><i className="far fa-address-card"></i> &nbsp; Información personal</legend>
-              <div className="">
-                <select
-                  className="form-control"
-                  name="cliente_tipo_documento_reg"
-                  id="cliente_tipo_documento"
-                // value={formData.cliente_tipo_documento}
-                // onChange={handleChange}
-                >
-                  <option value="" >Tipo de documento</option>
-                  <option value="DNI" >1 - DNI</option>
-                  <option value="Pasaporte" >2 - RUC</option>S
-                </select>
-                <label htmlFor="cliente_tipo_documento" className="form-label"></label>
-              </div>
-
-
-
-              <div className="reservation-form">
-                <label htmlFor="cliente_numero_documento" className="form-label">Numero de documento: <i className="fab fa-font-awesome-alt"></i></label>
-                <input type="text" className="" id="Documento" aria-describedby="Documento"></input>
-              </div>
-
-
-              <div className="reservation-form">
-                <label htmlFor="cliente_nombre" className="form-label">Nombres: <i className="fab fa-font-awesome-alt"></i></label>
-                <input type="text" className="" id="Nombres" aria-describedby="Nombres"></input>
-              </div>
-
-              <div className="reservation-form">
-                <label htmlFor="cliente_telefono" className="form-label">Teléfono: <i className="fab fa-font-awesome-alt"></i></label>
-                <input type="text" className="" id="Telefono" aria-describedby="Telefono"></input>
-              </div>
-
-              <div className="reservation-form">
-                <label htmlFor="cliente_telefono" className="form-label">Propietario: <i className="fab fa-font-awesome-alt"></i></label>
-                <input type="checkbox" className="" id="Propietario" aria-describedby="Propietario"></input>
-              </div>
-              <button
-                className="action-button"
-              // onClick={ handleLogin }
-              >Registrar
-              </button>
-
-            </div >
-          </form>
-        </div >
-
-      </body >
-    </>
-
-
-  )
-};
-
-export default FormProfile;
-
-function getUser() {
-  throw new Error("Function not implemented.");
-}

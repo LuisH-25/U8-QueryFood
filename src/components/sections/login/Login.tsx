@@ -1,60 +1,71 @@
-import React from "react";
-import { supabase } from "../../../supabase/client";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import useForm from '../../../hooks/useForm'
+import { signInWithEmail } from '../services/auth'
 
+const initialState = {
+  email: '',
+  password: ''
+}
 
-function FormLogin(){
-  
-  const [email, setEmail] = useState("")
-  const navigate = useNavigate();
-  // console.log("USUARIO: ", supabase.auth.user());
-  const handleSubmit = async (e: any) => {
+function FormLogin() {
+
+  const { formValues, handleInputChange } = useForm(initialState)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("USUARIO: ", supabase.auth.getUser());
-    console.log("EMAILLLLLL: ",email);
-    try{
-      const result = await supabase.auth.signInWithOtp({
-        email,
-      })
-    }catch(error){
-      console.error(error)
+    const { email, password } = formValues;
+    const result = await signInWithEmail(email, password);
+    
+    if (result.data && result.data.user) {
+      console.log('El usuario está registrado y ha iniciado sesión con éxito');
+    } else {
+      console.log('El usuario no está registrado, por favor regístrese');
     }
   };
 
+  return (
+    <>
+      <body>
+        <div className="reservation-form">
+          <h2 className="">Login</h2>
+          <form onSubmit={handleSubmit}>
 
- return (
-   <>
-   <body>
-     <div className="reservation-form">
-         <h2 className="">Login Form</h2>
-         <form onSubmit={handleSubmit}>
-           <div className="reservation-form">
-             <label htmlFor="exampleInputEmail1" className="form-label">Email: </label>
-            
-             <input type="email" className="form-control border border-primary" id="" aria-describedby="" onChange={(e)=>setEmail(e.target.value)}></input>
-           </div>
-           <div className="reservation-form ">
-             <label htmlFor="exampleInputPassword1" className="form-label">Password: </label>
-             <input type="password" className="form-control border border-primary" id="exampleInputPassword1"></input>
-           </div>
-           <p className="small"><a className="text-primary" href="#forgotpassword">Forgot password?</a></p>
-           <div className="d-grid">
-            <button
-                  className="action-button" 
-                  // onClick={ handleLogin }
-            >Login
-            </button>
-           </div>
-         </form> 
-          
+            <div className="reservation-form">
+              <label htmlFor="email">Email:</label>
+              <input type="text" name='email' value={formValues.email} onChange={handleInputChange} />
+            </div>
 
-      </div>
-   </body>
-</>
+            <div className="reservation-form">
+              <label htmlFor="password">Password:</label>
+              <input type="text" name='password' value={formValues.password} onChange={handleInputChange} />
+            </div>
+
+            <button className="action-button" >Login</button>
+          </form>
+        </div>
 
 
- )
+      </body>
+    </>
+
+  )
 }
 
 export default FormLogin;
+
+
+/*
+  const [email, setEmail] = useState("")
+  const navigate = useNavigate();
+  console.log("USUARIO: ", supabase.auth.user());
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log("EMAILLLLLL: ", email);
+    try {
+      const result = await supabase.auth.signIn({
+        email,
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  };
+*/

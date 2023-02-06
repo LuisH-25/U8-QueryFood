@@ -1,5 +1,12 @@
 import { supabase } from '../services/config'
 
+export const signInWithEmail = async (email : any, password : any) => {
+  const result = await supabase.auth.signInWithPassword({
+    email,
+    password
+  })
+  return result
+}
 
 
 export const signUpWithEmail = async (data: any) => {

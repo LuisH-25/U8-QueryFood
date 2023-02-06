@@ -1,12 +1,12 @@
 import React from "react";
 import useForm from '../../../hooks/useForm'
-import { signUpWithEmail, updateProfile , getUser} from '../services/auth'
+import { signUpWithEmail, updateProfile, getUser } from '../services/auth'
 import { FormValues } from "../../../interface/queryfood";
 import { supabase } from '../services/config'
 const initialState: FormValues = {
   nombre: '',
   email: '',
-  password: ''
+  password: '',
 }
 
 function FormProfile() {
@@ -31,7 +31,7 @@ function FormProfile() {
 
     console.log("resultadok", result)
     if (result) {
-      const { data, error} = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
       });
@@ -56,24 +56,29 @@ function FormProfile() {
     <div className="reservation-form">
       <h2 className="">Registrar Usuario</h2>
       <form onSubmit={handleSubmit}>
-      <div className="reservation-form">
-        <label htmlFor="nombre">Nombres:</label>
-        <input type="text" name='nombre' value={formValues.nombre} onChange={handleInputChange} />
-      </div>
-      <div className="reservation-form">
-        <label htmlFor="email">Email:</label>
-        <input type="text" name='email' value={formValues.email} onChange={handleInputChange} />
-      </div>
+        <div className="reservation-form">
+          <label htmlFor="nombre">Nombres:</label>
+          <input type="text" name='nombre' value={formValues.nombre} onChange={handleInputChange} />
+        </div>
+        <div className="reservation-form">
+          <label htmlFor="email">Email:</label>
+          <input type="text" name='email' value={formValues.email} onChange={handleInputChange} />
+        </div>
 
-      <div className="reservation-form">
-        <label htmlFor="password">Password:</label>
-        <input type="text" name='password' value={formValues.password} onChange={handleInputChange} />
-      </div>
-      {error && <div className="error">{error}</div>}
-      <button className="action-button" >Registrar</button>
-    </form>
+        <div className="reservation-form">
+          <label htmlFor="password">Password:</label>
+          <input type="text" name='password' value={formValues.password} onChange={handleInputChange} />
+        </div>
+
+        <div className="reservation-form">
+          <label htmlFor="Propietario" className="form-label">¿Es propietario de un restauranteS?: <i className="fab fa-font-awesome-alt"></i></label>
+          <input type="checkbox" className="form-control border border-primary" id="Propietario" aria-describedby="Propietario"></input>
+        </div>
+        {error && <div className="error">{error}</div>}
+        <button className="action-button" >Registrar</button>
+      </form>
     </div>
-    
+
   );
 };
 

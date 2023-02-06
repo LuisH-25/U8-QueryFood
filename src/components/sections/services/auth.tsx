@@ -39,6 +39,11 @@ export const getUser = async () =>{
   return result;
 }
 
+export const getSession = async () =>{
+  const result = await supabase.auth.getSession();
+  return result;
+}
+
 // export const getUserProfile = async () => {
 //   try {
 //     const user = supabase.auth.getUser()

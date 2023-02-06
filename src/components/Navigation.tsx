@@ -2,11 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {NavbarProps} from '../interface/queryfood'
 import { supabase } from "../supabase/client";
+// import { getSession } from './sections/services/auth'; 
+
 
 const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
- 
 
-  console.log("USUARIO navigation: ", supabase.auth.getUser());
+  async function getUser2() {
+    const { data } = await supabase.auth.getUser();
+    return data;
+  }
+  async function prueba(){
+    const data_user = await getUser2();
+    console.log("USUARIO navigation getSession: ", data_user);        //OBTENGO EL USUARIO LOGUEADOOO
+  }
+  prueba();
+  // const user = await supabase.auth.getUser();
+  // console.log("user loguado:" ,user)
+
   if (supabase.auth.getUser() == undefined){
     return (
       <menu className={`navbar-menu ${props.device}`}>

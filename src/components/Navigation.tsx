@@ -6,8 +6,8 @@ import { supabase } from "../supabase/client";
 const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
  
 
-  console.log("USUARIO: ", supabase.auth.user());
-  if (supabase.auth.user() != undefined){
+  console.log("USUARIO navigation: ", supabase.auth.getUser());
+  if (supabase.auth.getUser() == undefined){
     return (
       <menu className={`navbar-menu ${props.device}`}>
         {props.device === 'mobile' ? (

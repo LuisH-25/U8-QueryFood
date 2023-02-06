@@ -1,9 +1,8 @@
 import React from "react";
-import { supabase } from '../services/config'
 import useForm from '../../../hooks/useForm'
-import { signUpWithEmail, updateProfile } from '../services/auth'
+import { signUpWithEmail, updateProfile , getUser} from '../services/auth'
 import { FormValues } from "../../../interface/queryfood";
-
+import { supabase } from '../services/config'
 const initialState: FormValues = {
   nombre: '',
   email: '',
@@ -15,7 +14,7 @@ function FormProfile() {
   const { formValues, handleInputChange, reset } = useForm(initialState)
   const [error, setError] = React.useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const { email, password, nombre } = formValues;
     if (password.length < 6) {
@@ -32,14 +31,20 @@ function FormProfile() {
 
     console.log("resultadok", result)
     if (result) {
-      const user : any = supabase.auth.user();
-      if (user) {
-        const data = {
-          id: user.id,
-          name: nombre
+      const { data, error} = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+      console.log("ERROR: ", error)
+      if (data) {
+        const user = {
+          id: data.user?.id,
+          nombre: nombre
         };
+        console.log("DATA: ", data)
+        console.log("user ingresado al if: ", user)
         // Add user's profile in profiles table
-        await updateProfile(data);
+        await updateProfile(user);
       } else {
         console.error("User is null, unable to access id property");
       }

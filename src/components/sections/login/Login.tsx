@@ -8,12 +8,13 @@ function FormLogin(){
   
   const [email, setEmail] = useState("")
   const navigate = useNavigate();
-  console.log("USUARIO: ", supabase.auth.user());
+  // console.log("USUARIO: ", supabase.auth.user());
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log("USUARIO: ", supabase.auth.getUser());
     console.log("EMAILLLLLL: ",email);
     try{
-      const result = await supabase.auth.signIn({
+      const result = await supabase.auth.signInWithOtp({
         email,
       })
     }catch(error){

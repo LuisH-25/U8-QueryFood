@@ -13,26 +13,38 @@ const initialState: FormValues = {
 function FormProfile() {
 
   const { formValues, handleInputChange, reset } = useForm(initialState)
+  const [error, setError] = React.useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, password, nombre } = formValues;
+    if (password.length < 6) {
+      setError("Password should be at least 6 characters");
+      return;
+    }
+    setError(null);
     const data = {
       email: email,
       password: password
     };
     // Add user in users table
     const result = await signUpWithEmail(data);
+
     console.log("resultadok", result)
     if (result) {
       const user : any = supabase.auth.user();
-      const data = {
-        id: user.id,
-        name: nombre
-      };
-      // Add user's profile in profiles table
-      await updateProfile(data);
+      if (user) {
+        const data = {
+          id: user.id,
+          name: nombre
+        };
+        // Add user's profile in profiles table
+        await updateProfile(data);
+      } else {
+        console.error("User is null, unable to access id property");
+      }
     }
+
   };
 
   return (
@@ -52,7 +64,7 @@ function FormProfile() {
         <label htmlFor="password">Password:</label>
         <input type="text" name='password' value={formValues.password} onChange={handleInputChange} />
       </div>
-
+      {error && <div className="error">{error}</div>}
       <button className="action-button" >Registrar</button>
     </form>
     </div>

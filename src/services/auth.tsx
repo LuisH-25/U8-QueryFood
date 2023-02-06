@@ -1,4 +1,4 @@
-import { supabase } from '../services/config'
+import { supabase } from '../supabase/client'
 
 export const signInWithEmail = async (email : any, password : any) => {
   const result = await supabase.auth.signInWithPassword({
@@ -29,6 +29,7 @@ export const updateProfile = async (user: any) => {
   }
 }
 
+//Log out
 export const logout = async () => {
   const result = await supabase.auth.signOut()
   return result

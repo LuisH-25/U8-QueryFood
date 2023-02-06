@@ -1,8 +1,9 @@
 import React from "react";
 import useForm from '../../../hooks/useForm'
-import { signUpWithEmail, updateProfile, getUser } from '../services/auth'
+import { signUpWithEmail, updateProfile, getUser } from '../../../services/auth'
 import { FormValues } from "../../../interface/queryfood";
-import { supabase } from '../services/config'
+import { supabase } from '../../../supabase/client'
+
 const initialState: FormValues = {
   nombre: '',
   email: '',
@@ -18,7 +19,7 @@ function FormProfile() {
     e.preventDefault();
     const { email, password, nombre } = formValues;
     if (password.length < 6) {
-      setError("Password should be at least 6 characters");
+      setError("la contraseña debe tener por lo menos 6 caracteres");
       return;
     }
     setError(null);
@@ -74,7 +75,7 @@ function FormProfile() {
           <label htmlFor="Propietario" className="form-label">¿Es propietario de un restauranteS?: <i className="fab fa-font-awesome-alt"></i></label>
           <input type="checkbox" className="form-control border border-primary" id="Propietario" aria-describedby="Propietario"></input>
         </div>
-        {error && <div className="error">{error}</div>}
+         {error && <div className="error">{error}</div>}
         <button className="action-button" >Registrar</button>
       </form>
     </div>

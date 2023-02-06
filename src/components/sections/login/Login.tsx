@@ -1,13 +1,16 @@
+import { useState } from 'react';
 import useForm from '../../../hooks/useForm'
-import { signInWithEmail } from '../services/auth'
+import { logout, signInWithEmail } from '../../../services/auth'
 
 const initialState = {
   email: '',
   password: ''
 }
 
-function FormLogin() {
+const handleLogout = async () => await logout()
 
+function FormLogin() {
+  const [message, setMessage] = useState('');
   const { formValues, handleInputChange } = useForm(initialState)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -16,9 +19,9 @@ function FormLogin() {
     const result = await signInWithEmail(email, password);
     
     if (result.data && result.data.user) {
-      console.log('El usuario está registrado y ha iniciado sesión con éxito');
+      setMessage('El usuario está registrado y ha iniciado sesión con éxito');
     } else {
-      console.log('El usuario no está registrado, por favor regístrese');
+      setMessage('El usuario no está registrado, por favor regístrese');
     }
   };
 
@@ -38,7 +41,7 @@ function FormLogin() {
               <label htmlFor="password">Password:</label>
               <input type="text" name='password' value={formValues.password} onChange={handleInputChange} />
             </div>
-
+            {message && <p>{message}</p>}
             <button className="action-button" >Login</button>
           </form>
         </div>

@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {NavbarProps} from '../interface/queryfood'
 import { supabase } from "../supabase/client";
-// import { getSession } from './sections/services/auth'; 
-
 
 const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
 
@@ -16,10 +14,8 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
     console.log("USUARIO navigation getSession: ", data_user);        //OBTENGO EL USUARIO LOGUEADOOO
   }
   prueba();
-  // const user = await supabase.auth.getUser();
-  // console.log("user loguado:" ,user)
-
-  if (supabase.auth.getUser() == undefined){
+  
+  if (prueba()!= null){
     return (
       <menu className={`navbar-menu ${props.device}`}>
         {props.device === 'mobile' ? (
@@ -43,7 +39,7 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
           <h1>Restaurants</h1>
         </Link>
 
-        <Link className="hover-effect" to="/login">
+        <Link className="hover-effect" to="/salir">
           <h1>Salir</h1>
         </Link>
         

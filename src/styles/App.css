@@ -109,7 +109,7 @@ Link:link {
   margin-left: -1.25rem;
 }
 
-/* CALL TO ACTION */
+/* CALL TO ACTION  */
 .call-to-action {
   background-color: #495e57;
   color: white;
@@ -375,14 +375,9 @@ footer > menu {
 }
 
 .reservation-form {
-  padding: 2rem 0 0.5rem 0;
+  padding: 2rem 0 1rem 0;
   text-align: center;
 }
-
-/* .sign-up-form{
-  padding: 2rem 0 0.5rem 0;
-  text-align: center;
-} */
 
 .reservation-form > div {
   margin-bottom: 1.5rem;
@@ -625,3 +620,66 @@ footer > menu {
 .carousel > .thumbs-wrapper {
   display: none;
 }
+
+/* ProfileForm */
+
+.formProfile {
+  display: none;
+  transform: scale(0);
+  opacity: 0;
+}
+
+.formProfile {
+  display: flex;
+  transform: scale(1);
+  opacity: 1;
+  flex-direction: column;
+  gap: 10px;
+  animation: show 1s;
+}
+
+.formProfile {
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+} 
+@keyframes show {
+  0% {
+      opacity: 0;
+      transform: scale(0);
+  }
+
+  100% {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+/* imput documento*/
+.documento, .nombres, .telefono {
+    border: none;
+    padding: 20px;
+    width: 60%;
+}
+.documento, .nombres, .telefono {
+  width: 100%;
+  border: 1px solid #5E5763;
+
+  margin-bottom: 10px;
+}
+.or {
+  width: 100%;
+}
+.or::before {
+  content: '';
+  padding: 0;
+  margin: 0;
+}
+.or::after {
+  content: '';
+  padding: 0;
+  margin: 0;
+}
+

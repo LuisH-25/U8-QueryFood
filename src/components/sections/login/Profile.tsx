@@ -32,8 +32,10 @@ function FormProfile() {
 
     console.log("resultadok", result)
     if (result) {
+      
       const user : any = supabase.auth.user();
-      if (user) {
+     
+      if (user.user_id) {
         const data = {
           id: user.id,
           name: nombre

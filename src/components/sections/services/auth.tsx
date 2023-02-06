@@ -1,6 +1,12 @@
 import { supabase } from '../services/config'
 
-
+export const signInWithEmail = async (email : any, password : any) => {
+  const result = await supabase.auth.signIn({
+    email,
+    password
+  })
+  return result
+}
 
 export const signUpWithEmail = async (data: any) => {
   const result = await supabase.auth.signUp(data)
@@ -9,7 +15,7 @@ export const signUpWithEmail = async (data: any) => {
 
 export const updateProfile = async (data: any) => {
   try {
-    await supabase.from('profile').upsert(data)
+    await supabase.from('profiles').upsert(data)
   } catch (error) {
     console.error(error)
   }
@@ -31,7 +37,7 @@ export const getUserProfile = async () => {
       }
 
       const { data, error, status } = await supabase
-        .from('profile')
+        .from('profiles')
         .select('id, nombre, updated_at')
         .eq('id', id)
         .single()
@@ -48,4 +54,6 @@ export const getUserProfile = async () => {
     console.log(error)
   }
 }
+
+
 

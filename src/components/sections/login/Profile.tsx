@@ -23,12 +23,12 @@ function FormProfile() {
     };
     // Add user in users table
     const result = await signUpWithEmail(data);
-
+    console.log("resultadok", result)
     if (result) {
       const user : any = supabase.auth.user();
       const data = {
         id: user.id,
-        full_name: nombre
+        name: nombre
       };
       // Add user's profile in profiles table
       await updateProfile(data);

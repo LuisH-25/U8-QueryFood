@@ -9,7 +9,7 @@ export const signUpWithEmail = async (data: any) => {
 
 export const updateProfile = async (data: any) => {
   try {
-    await supabase.from('profile').upsert(data, { returning: 'minimal' })
+    await supabase.from('profile').upsert(data)
   } catch (error) {
     console.error(error)
   }
@@ -26,8 +26,8 @@ export const getUserProfile = async () => {
     if (user) {
       const { id, app_metadata, user_metadata } = user
       if (app_metadata.provider === 'google') {
-        const { full_name } = user_metadata
-        return { username: full_name }
+        const { nombre } = user_metadata
+        return { username: nombre }
       }
 
       const { data, error, status } = await supabase

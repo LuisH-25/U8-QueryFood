@@ -8,8 +8,8 @@ export interface NavbarProps {
 }
  
 export interface TestimonialCardProps {
-    name: string;
-    description: string;
+    calificacion : number;
+    comentario : string;
     
 }
 
@@ -31,6 +31,11 @@ export interface FormValues {
   }
 
   
-
+ 
+  export interface Comment {
+    calificacion : number;
+    comentario : string;
+  }
+  
 
 

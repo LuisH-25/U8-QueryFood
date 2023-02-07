@@ -6,8 +6,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = (props) => {
     return (
         <article className="testimonial-card">
             <img src={Star} alt="delivery Icon"></img>
-            <h3>{props.name}</h3>
-            <p>{props.description}</p>
+            <h3>{props.calificacion}</h3>
+            <p>{props.comentario}</p>
         </article>
     );
 };

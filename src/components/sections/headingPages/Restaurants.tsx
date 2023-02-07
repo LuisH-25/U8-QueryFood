@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Carousel from '../carousel/RestaurantCarousel';
 import GreekSalad from '../../../assets/food/greek-salad.webp';
 import Bruschetta from '../../../assets/food/bruschetta.jpeg';
@@ -26,6 +26,7 @@ const listRestaurants = [
     description: 'Fresh baked lemon bread coated in salt and sugar. Powdered in citrus and lemon zest.'
   },
 ];
+
 
 const Restaurants: React.FC<RestaurantCardProps> = () => {
   
@@ -56,3 +57,4 @@ const Restaurants: React.FC<RestaurantCardProps> = () => {
 }
 
 export default Restaurants;
+

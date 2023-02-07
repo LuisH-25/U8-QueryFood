@@ -7,7 +7,7 @@ function About() {
     <>
       <main >
         <Abouts />
-        <Testimonials name={""} description={""} />
+        <Testimonials calificacion={0} comentario={""} />
       </main>
     </>
   );

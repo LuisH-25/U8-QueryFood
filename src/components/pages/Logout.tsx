@@ -1,28 +1,26 @@
-import React from 'react'
+import { useEffect } from "react";
 import Heading from "../sections/headingPages/HeadingHome";
 import Testimonials from "../sections/headingPages/Testimonials";
-import {logout} from '../../services/auth';
-import Navigation from '../Navigation';
+import { logout } from "../../services/auth";
+import Navigation from "../Navigation";
 
+function Logout() {
+  useEffect(() => {
+    logout();
+    localStorage.clear();
+    window.location.href = "/";
+  }, []);
 
-function Logout () {
-
-  async function prueba2(){
-    const data_user = await logout();
-    console.log("USUARIO DESLOGUEADO ");        //OBTENGO EL USUARIO LOGUEADOOO
-  }
-  
   return (
     <>
       <Heading />
       {/* <Logout /> */}
       <main>
-        <Testimonials name={''} description={''} />
+        <Testimonials calificacion={0} comentario={""} />
       </main>
       <Navigation device="desktop" />
     </>
   );
-
-};
+}
 
 export default Logout;

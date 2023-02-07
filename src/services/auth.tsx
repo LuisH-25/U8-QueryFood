@@ -1,18 +1,18 @@
-import { supabase } from '../supabase/client'
+import { supabase } from "../supabase/client";
 
-export const signInWithEmail = async (email : any, password : any) => {
+export const signInWithEmail = async (email: any, password: any) => {
   const result = await supabase.auth.signInWithPassword({
     email,
-    password
-  })
-  return result
-}
-
+    password,
+  });
+  localStorage.setItem("user", JSON.stringify(result.data.user));
+  return result;
+};
 
 export const signUpWithEmail = async (data: any) => {
-  const result = await supabase.auth.signUp(data)
-  return result
-}
+  const result = await supabase.auth.signUp(data);
+  return result;
+};
 
 export const updateProfile = async (user: any) => {
   try {
@@ -22,28 +22,28 @@ export const updateProfile = async (user: any) => {
     // await supabase.from("profiles").upsert([{
     //   data, { returning: 'minimal' }
     // }]);
-    const {data, error}=await supabase.from('profiles').upsert(user);
+    const { data, error } = await supabase.from("profiles").upsert(user);
     console.log("error:", error);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 //Log out
 export const logout = async () => {
-  const result = await supabase.auth.signOut()
-  return result
-}
+  const result = await supabase.auth.signOut();
+  return result;
+};
 
-export const getUser = async () =>{
+export const getUser = async () => {
   const result = await supabase.auth.getUser();
   return result;
-}
+};
 
-export const getSession = async () =>{
+export const getSession = async () => {
   const result = await supabase.auth.getSession();
   return result;
-}
+};
 
 // export const getUserProfile = async () => {
 //   try {
@@ -74,4 +74,3 @@ export const getSession = async () =>{
 //     console.log(error)
 //   }
 // }
-

@@ -15,7 +15,7 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
   }
   console.log(prueba());
 
-  if (prueba() == null) {
+  if (prueba() != null) {
     return (
       <menu className={`navbar-menu ${props.device}`}>
         {props.device === 'mobile' ? (
@@ -36,7 +36,10 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
           <h1>About</h1>
         </Link>
         <Link className="hover-effect" to="/restaurants">
-          <h1>Restaurants</h1>
+          <h1>Ver Restaurantes</h1>
+        </Link>
+        <Link className="hover-effect" to="/registrar_restaurants">
+          <h1>Registrar Restaurantes</h1>
         </Link>
 
         <Link className="hover-effect" to="/logout">

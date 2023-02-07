@@ -23,6 +23,7 @@ function FormLogin() {
     } else {
       setMessage("El usuario no está registrado, por favor regístrese");
     }
+    window.location.href = "/";
   };
 
   return (

@@ -9,33 +9,30 @@ export interface NavbarProps {
  
 export interface TestimonialCardProps {
     calificacion : number;
-    comentario : string;
-    
+    comentario : string; 
 }
 
 export interface RestaurantCardProps {
-    image: string;
-    name: string;
-    calification: number;
-    description: string;
+    nombre: string;
+    descripcion: string;
 }
 
 export interface AboutProps {
-
 }
 
 export interface FormValues {
     nombre: string;
     email: string;
     password: string;
-  }
+}
 
-  
- 
-  export interface Comment {
+export interface Comment {
     calificacion : number;
     comentario : string;
-  }
-  
+}
 
+export interface Restaurant {
+    nombre: string;
+    descripcion: string;
+}
 

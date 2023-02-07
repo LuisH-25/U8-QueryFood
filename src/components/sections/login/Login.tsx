@@ -23,7 +23,9 @@ function FormLogin() {
     } else {
       setMessage("El usuario no está registrado, por favor regístrese");
     }
+    window.location.href = "/";
   };
+
 
   return (
     <>
@@ -60,20 +62,3 @@ function FormLogin() {
 }
 
 export default FormLogin;
-
-/*
-  const [email, setEmail] = useState("")
-  const navigate = useNavigate();
-  console.log("USUARIO: ", supabase.auth.user());
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    console.log("EMAILLLLLL: ", email);
-    try {
-      const result = await supabase.auth.signIn({
-        email,
-      })
-    } catch (error) {
-      console.error(error)
-    }
-  };
-*/

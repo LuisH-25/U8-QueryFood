@@ -17,7 +17,7 @@ function Routing() {
       <Route path="/login" element={<Login />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/registrar_restaurants" element={<ResgistrarRestaurante />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/signup" element={<Profile />} />
     </Routes>
   );
 }

@@ -16,9 +16,8 @@ const Footer: React.FC = () => {
           <ul className="footer-links">
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
-            {/* <Link to="/reservations">Reservations</Link> */}
-            <Link to="/restaurants">Restaurants</Link>
             <Link to="/login">Login</Link>
+            <Link to="/signup">SignUp</Link>
           </ul>
         </li>
 
@@ -43,7 +42,7 @@ const Footer: React.FC = () => {
             <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
               Instagram
             </a>
-            <a href="https://www.youtube.com/watch?v=F64yFFnZfkI" target="_blank" rel="noreferrer">
+            <a href="https://u8-query-food.vercel.app" target="_blank" rel="noreferrer">
               Join us!
             </a>
           </ul>

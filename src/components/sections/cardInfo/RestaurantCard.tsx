@@ -5,11 +5,11 @@ import { RestaurantCardProps } from '../../../interface/queryfood';
 const RestaurandCard: React.FC<RestaurantCardProps> = (props) => {
     return (
       <article className="menu-card">
-        <img src={props.image} alt="Special Menu"></img>
+        {/* <img src={props.image} alt="Special Menu"></img> */}
         <section className="menu-card-content">
-          <h1>{props.name}</h1>
-          <h3>{props.calification} </h3>
-          <p>{props.description}</p>
+          <h1>{props.nombre}</h1>
+          {/* <h3>{props.calification} </h3> */}
+          <p>{props.descripcion}</p>
           <Link className="special-button" to="/verMenu">Ver Menu</Link>
         </section>
       </article>

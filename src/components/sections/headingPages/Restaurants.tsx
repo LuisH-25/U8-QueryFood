@@ -4,7 +4,7 @@ import GreekSalad from '../../../assets/food/greek-salad.webp';
 import Bruschetta from '../../../assets/food/bruschetta.jpeg';
 import LemonDessert from '../../../assets/food/lemon-dessert.webp';
 import RestaurandCard from '../cardInfo/RestaurantCard';
-import { RestaurantCardProps } from '../../../interface/queryfood';
+import { RestaurantCardProps,Restaurant } from '../../../interface/queryfood';
 
 const listRestaurants = [
   {
@@ -29,6 +29,17 @@ const listRestaurants = [
 
 
 const Restaurants: React.FC<RestaurantCardProps> = () => {
+  const url = "https://restaurantes-mu.vercel.app/restaurante"
+  const [ todos, setTodos] = useState<Restaurant[]>()
+  const fetchApi = async () => {
+    const response = await fetch(url)
+    const responseJSON = await response.json() as Restaurant[]
+    setTodos(responseJSON)
+    return responseJSON
+  }
+  useEffect(() => {
+    fetchApi()
+  }, [])
   
     return (
         <section className="specials">
@@ -38,15 +49,9 @@ const Restaurants: React.FC<RestaurantCardProps> = () => {
             </article>
 
             <section className="specials-cards">
-                {listRestaurants.map(listRestaurants => (
-                    <RestaurandCard
-                        // key={special.name}
-                        image={listRestaurants.image}
-                        name={listRestaurants.name}
-                        calification={listRestaurants.calification}
-                        description={listRestaurants.description}
-                    />
-                ))}
+            {!todos || !Array.isArray(todos) ? 'Cargando...' : todos.map(({ nombre, descripcion }: Restaurant) => (
+              <RestaurandCard nombre={nombre} descripcion={descripcion} />
+          ))}
             </section>
 
             <section className="specials-carousel">
@@ -57,4 +62,3 @@ const Restaurants: React.FC<RestaurantCardProps> = () => {
 }
 
 export default Restaurants;
-

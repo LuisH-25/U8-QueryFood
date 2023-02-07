@@ -32,35 +32,24 @@ const Testimonials: React.FC<TestimonialCardProps> = () => {
   }, [])
   return (
     <>
-    <article className="testimonials">
-     <article className="testimonials-topbar">
-          <h1>Testimonials de Comentarios de uso</h1>
-        </article>
-      <section className="testimonials-cards">
-        {!todos || !Array.isArray(todos) ? 'Cargando...' : todos.map(({ calificacion, comentario }: Comment) => (
-          <TestimonialCard calificacion={calificacion} comentario={comentario} />
-      ))}
-      </section>
-
-    </article>
-   
-    <section className="testimonials">
+      <section className="testimonials">
         <article className="testimonials-topbar">
-          <h1>Testimonials</h1>
+            <h1>Testimonios</h1>
         </article>
 
         <section className="testimonials-cards">
-          {testimonials.map(({ calificacion, comentario }) => (
-            <TestimonialCard calificacion={calificacion} comentario={comentario} />
+            {!todos || !Array.isArray(todos) ? 'Cargando...' : todos.map(({ calificacion, comentario }: Comment) => (
+              <TestimonialCard calificacion={calificacion} comentario={comentario} />
           ))}
-
         </section>
 
         <section className="testimonials-carousel">
-          <Carousel />
+            <Carousel />
         </section>
 
-      </section></>
+      </section>
+   
+    </>
   );
 };
 

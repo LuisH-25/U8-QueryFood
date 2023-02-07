@@ -33,5 +33,5 @@ npm install @types/react-router-dom
 ```
 npm install react-responsive-carousel
 ```
-npm install @chakra-ui/react
+
 

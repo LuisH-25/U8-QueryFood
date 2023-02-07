@@ -1,16 +1,17 @@
 import React from 'react'
 import Heading from "../sections/headingPages/HeadingHome";
 import Testimonials from "../sections/headingPages/Testimonials";
-// import Logout from '../sections/login/Logout';
-import { supabase } from "../../supabase/client";
+import {logout} from '../../services/auth';
 import Navigation from '../Navigation';
+
+
 function Logout () {
-  try {
-    console.log("USUARIO LOGOUTTTTT: ",  supabase.auth.signOut());
-    supabase.auth.signOut();
-  } catch (error) {
-    alert("ocurrio un error inesperado");
+
+  async function prueba2(){
+    const data_user = await logout();
+    console.log("USUARIO DESLOGUEADO ");        //OBTENGO EL USUARIO LOGUEADOOO
   }
+  
   return (
     <>
       <Heading />

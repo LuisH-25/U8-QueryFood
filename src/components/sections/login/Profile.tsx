@@ -1,6 +1,6 @@
 import React from "react";
 import useForm from '../../../hooks/useForm'
-import { signUpWithEmail, updateProfile, getUser } from '../../../services/auth'
+import { signUpWithEmail, updateProfile } from '../../../services/auth'
 import { FormValues } from "../../../interface/queryfood";
 import { supabase } from '../../../supabase/client'
 
@@ -12,8 +12,10 @@ const initialState: FormValues = {
 
 function FormProfile() {
 
-  const { formValues, handleInputChange, reset } = useForm(initialState)
+  const { formValues, handleInputChange } = useForm(initialState)
   const [error, setError] = React.useState<string | null>(null);
+  const [registrationSuccess, setRegistrationSuccess] = React.useState<boolean>(false);
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -45,6 +47,7 @@ function FormProfile() {
         console.log("DATA: ", data)
         console.log("user ingresado al if: ", user)
         // Add user's profile in profiles table
+        setRegistrationSuccess(true);
         await updateProfile(user);
       } else {
         console.error("User is null, unable to access id property");
@@ -56,28 +59,32 @@ function FormProfile() {
   return (
     <div className="reservation-form">
       <h2 className="">Registrar Usuario</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="reservation-form">
-          <label htmlFor="nombre">Nombres:</label>
-          <input type="text" name='nombre' value={formValues.nombre} onChange={handleInputChange} />
-        </div>
-        <div className="reservation-form">
-          <label htmlFor="email">Email:</label>
-          <input type="text" name='email' value={formValues.email} onChange={handleInputChange} />
-        </div>
+      {registrationSuccess ? (
+        <div className="success">Registro exitoso</div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className="reservation-form">
+            <label htmlFor="nombre">Nombres:</label>
+            <input type="text" name='nombre' value={formValues.nombre} onChange={handleInputChange} />
+          </div>
+          <div className="reservation-form">
+            <label htmlFor="email">Email:</label>
+            <input type="text" name='email' value={formValues.email} onChange={handleInputChange} />
+          </div>
 
-        <div className="reservation-form">
-          <label htmlFor="password">Password:</label>
-          <input type="text" name='password' value={formValues.password} onChange={handleInputChange} />
-        </div>
+          <div className="reservation-form">
+            <label htmlFor="password">Password:</label>
+            <input type="text" name='password' value={formValues.password} onChange={handleInputChange} />
+          </div>
 
-        <div className="reservation-form">
-          <label htmlFor="Propietario" className="form-label">¿Es propietario de un restauranteS?: <i className="fab fa-font-awesome-alt"></i></label>
-          <input type="checkbox" className="form-control border border-primary" id="Propietario" aria-describedby="Propietario"></input>
-        </div>
-         {error && <div className="error">{error}</div>}
-        <button className="action-button" >Registrar</button>
-      </form>
+          <div className="reservation-form">
+            <label htmlFor="Propietario" className="form-label">¿Es propietario de un restaurante?: <i className="fab fa-font-awesome-alt"></i></label>
+            <input type="checkbox" name='es_propietario' value={formValues.es_propietario} onChange={handleInputChange}></input>
+          </div>
+          {error && <div className="error">{error}</div>}
+          <button className="action-button" >Registrar</button>
+        </form>
+      )}
     </div>
 
   );

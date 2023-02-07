@@ -1,21 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {NavbarProps} from '../interface/queryfood'
+import { NavbarProps } from '../interface/queryfood'
 import { supabase } from "../supabase/client";
 
 const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
-
+  
   async function getUser2() {
     const { data } = await supabase.auth.getUser();
     return data;
   }
-  async function prueba(){
+  async function prueba() {
     const data_user = await getUser2();
     console.log("USUARIO navigation getSession: ", data_user);        //OBTENGO EL USUARIO LOGUEADOOO
   }
-  prueba();
-  
-  if (prueba()!= null){
+  console.log(prueba());
+
+  if (prueba() == null) {
     return (
       <menu className={`navbar-menu ${props.device}`}>
         {props.device === 'mobile' ? (
@@ -39,11 +39,15 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
           <h1>Restaurants</h1>
         </Link>
 
-        <Link className="hover-effect" to="/salir">
-          <h1>Salir</h1>
+        <Link className="hover-effect" to="/logout">
+          
+          <h1>Salir
+
+            
+          </h1>
         </Link>
-        
-        
+
+
       </menu>
     );
   }
@@ -66,17 +70,19 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
       <Link className="hover-effect" to="/about">
         <h1>About</h1>
       </Link>
-    
+
       <Link className="hover-effect" to="/login">
         <h1>Login</h1>
       </Link>
 
-      
+
       <Link className="hover-effect" to="/profile">
-          <h1>SignUp</h1>
+        <h1>SignUp</h1>
       </Link>
     </menu>
   );
+
+
 };
 
 export default Navigation;

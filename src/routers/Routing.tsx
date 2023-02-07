@@ -4,8 +4,7 @@ import Homepage from "../components/pages/Home";
 import About from "../components/pages/About";
 import Restaurants from "../components/pages/Restaurants"
 import Login from "../components/pages/Login"
-import Profile from "../components/pages/Profile"
-import Logout from '../components/pages/Logout';
+import Registrar from "../components/pages/Registrar"
 
 
 function Routing() {
@@ -15,8 +14,7 @@ function Routing() {
       <Route path="/about" element={<About />} />
       <Route path="/restaurants" element={<Restaurants/>} />
       <Route path="/login" element={<Login />} />
-      <Route path="/logout" element={<Logout />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/registrar" element={<Registrar />} />
     </Routes>
   );
 }

@@ -7,7 +7,7 @@ function Homepage () {
     <>
       <Heading />
       <main>
-        <Testimonials name={''} description={''} />
+        {/* <Testimonials name={''} description={''} /> */}
       </main>
     </>
   );

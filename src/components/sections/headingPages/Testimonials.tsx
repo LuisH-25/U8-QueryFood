@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import TestimonialCard from '../cardInfo/TestimonialCard';
 import Carousel from "../carousel/TestimonialCarousel";
 import { TestimonialCardProps } from '../../../interface/queryfood';

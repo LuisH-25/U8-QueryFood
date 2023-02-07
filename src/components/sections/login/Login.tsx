@@ -1,23 +1,27 @@
 import React from "react";
-import { supabase } from "../../../supabase/client";
+import { useAuthStore } from "../../../token/token";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import { loginRequest } from "../ll/log";
 
-function FormLogin(){
-  
-  const [email, setEmail] = useState("")
+
+const Login = () => {
+  const setToken = useAuthStore((state) => state.setToken);
+  const setUser = useAuthStore((state) => state.setUser);
+
+  const [correo, setcorreo] = useState("");
+  const [contrasena, setcontrasena] = useState("");
   const navigate = useNavigate();
-  console.log("USUARIO: ", supabase.auth.user());
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    console.log("EMAILLLLLL: ",email);
-    try{
-      const result = await supabase.auth.signIn({
-        email,
-      })
-    }catch(error){
-      console.error(error)
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const resLogin = await loginRequest(correo, contrasena);
+    if (resLogin.status === 200) {
+      console.log(resLogin);
+      setToken(resLogin.data.token);
+      setUser(resLogin.data.data);
+      navigate("/registrar");
     }
   };
 
@@ -29,18 +33,34 @@ function FormLogin(){
          <h2 className="">Login Form</h2>
          <form onSubmit={handleSubmit}>
            <div className="reservation-form">
-             <label htmlFor="exampleInputEmail1" className="form-label">Email: </label>
+             <label htmlFor="exampleInputEmail1" className="form-label">Correo: </label>
             
-             <input type="email" className="form-control border border-primary" id="" aria-describedby="" onChange={(e)=>setEmail(e.target.value)}></input>
+             <input
+                className="form-control"
+                type="email"
+                placeholder="ejemplo@correo.com"
+                name="email"
+                required
+                value={correo}
+                onChange={(event) => setcorreo(event.target.value)}
+              />
            </div>
            <div className="reservation-form ">
-             <label htmlFor="exampleInputPassword1" className="form-label">Password: </label>
-             <input type="password" className="form-control border border-primary" id="exampleInputPassword1"></input>
+             <label htmlFor="exampleInputPassword1" className="form-label">Contraseña: </label>
+             <input
+                className="form-control"
+                type="password"
+                placeholder="Ingresa tu contraseña"
+                name="password"
+                required
+                value={contrasena}
+                onChange={(event) => setcontrasena(event.target.value)}
+              />
            </div>
            <p className="small"><a className="text-primary" href="#forgotpassword">Forgot password?</a></p>
            <div className="d-grid">
             <button
-                  className="action-button" 
+                  className="action-button"
                   // onClick={ handleLogin }
             >Login
             </button>
@@ -56,4 +76,4 @@ function FormLogin(){
  )
 }
 
-export default FormLogin;
+export default Login;

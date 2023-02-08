@@ -9,7 +9,7 @@ export interface NavbarProps {
  
 export interface TestimonialCardProps {
     calificacion : number;
-    comentario : string;
+    comentario : string; 
 }
 
 export interface RestaurantCardProps {

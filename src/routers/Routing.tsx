@@ -7,6 +7,7 @@ import Login from "../components/pages/Login"
 import Profile from "../components/pages/Profile"
 import Logout from '../components/pages/Logout';
 import ResgistrarRestaurante from '../components/pages/RegistrarRestaurante';
+import Platos from '../components/sections/headingPages/Platos';
 
 function Routing() {
   return (
@@ -18,6 +19,7 @@ function Routing() {
       <Route path="/logout" element={<Logout />} />
       <Route path="/registrar_restaurants" element={<ResgistrarRestaurante />} />
       <Route path="/signup" element={<Profile />} />
+      <Route path="/verPlatos"  />
     </Routes>
   );
 }

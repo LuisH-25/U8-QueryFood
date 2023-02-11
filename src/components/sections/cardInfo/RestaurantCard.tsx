@@ -10,7 +10,7 @@ const RestaurandCard: React.FC<RestaurantCardProps> = (props) => {
           <h1>{props.nombre}</h1>
           {/* <h3>{props.calification} </h3> */}
           <p>{props.descripcion}</p>
-          <Link className="special-button" to="/verMenu">Ver Menu</Link>
+          <Link className="special-button" to="/verPlatos">Ver Menu</Link>
         </section>
       </article>
     );

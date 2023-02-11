@@ -45,6 +45,9 @@ const Navigation: React.FC<NavbarProps> = (props: NavbarProps) => {
           <Link className="hover-effect" to="/registrar_restaurants">
             <h1>Registrar Restaurantes</h1>
           </Link>
+          <Link className="hover-effect" to="/verPlatos">
+            <h1>Platos</h1>
+          </Link>
 
           <Link className="hover-effect" to="/logout">
             <h1>Salir</h1>

@@ -51,10 +51,11 @@ export interface Plate{
     imagen:string;
     precio: number;
     descripcion:string;
-    disponibilidad:boolean
+    disponibilidad:boolean,
+    idRestaurant : number;
 
 }
 
 export interface nombreRestaurant {
-    nombreRestaurant : string;
+    nombreRestaurante : string;
 }

@@ -15,6 +15,7 @@ const Platos: React.FC<PlatosCardProps> = () => {
   const url = "https://restaurantes-mu.vercel.app/platos"
 
   const [ todos, setTodos] = useState<Plate[]>()
+
   const fetchApi = async () => {
     const response = await fetch(url)
     const responseJSON = await response.json() as Plate[]
@@ -27,24 +28,31 @@ const Platos: React.FC<PlatosCardProps> = () => {
     fetchApi()
   }, [])
 
+  const url_restaurante = "https://restaurantes-mu.vercel.app/restaurante/"
+  const [ nombre, setNombre] = useState<nombreRestaurant[]>()
 
- // url_restaurante = endpoint
-  // const [ nombre, setNombre] = useState<nombreRestaurant[]>()
-  // id= todos.map(({ restaurante_id}  id = restaurante_id))
-
-  // const getNombreRestaurant = async (id) => {
-  //   const response = await fetch(url_restaurante/{id})
-  //   const responseJSON = await response.json() as nombreRestaurant[]
-  //   name = [ name : n for  i responseJSON ]
-  //   setNombre(responseJSON)
-  //   console.log(responseJSON)
-  //   return responseJSON
-  // }
+  let id: any = 0
+  if (todos != undefined){
+     id =  todos[0].idRestaurant
+  }
+  console.log("fuera del if",id)
+  
+  const getNombreRestaurant = async (id : any) => {
+   const response = await fetch(`${url_restaurante}/${id}`)
+   const responseJSON = await response.json() as nombreRestaurant[]
+   
+    setNombre(responseJSON)
+    console.log(responseJSON)
+    return responseJSON
+  }
+  useEffect(() => {
+    getNombreRestaurant(id)
+  }, [])
 
     return (
         <section className="specials">
             <article className="specials-topbar">
-                <h1>{}</h1>
+            <h1>{nombre && nombre[0].nombreRestaurante}</h1>
                 {/* <a className="action-button" href={require('../../../assets/menu.webp')} target="_blank" rel="noreferrer">Lista de Restaurantes</a> */}
             </article>
 

@@ -36,3 +36,21 @@ export interface Restaurant {
     descripcion: string;
 }
 
+export interface PlatosCardProps {
+    imagen: string;
+    nombre_plato: string;
+    precio: number;
+    descripcion:string;
+    disponibilidad:boolean;
+    
+}
+
+
+export interface Platos{
+    nombre_plato: string;
+    imagen:string;
+    precio: number;
+    descripcion:string;
+    disponibilidad:boolean
+
+}

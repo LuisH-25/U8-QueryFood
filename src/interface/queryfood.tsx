@@ -46,11 +46,15 @@ export interface PlatosCardProps {
 }
 
 
-export interface Platos{
+export interface Plate{
     nombre_plato: string;
     imagen:string;
     precio: number;
     descripcion:string;
     disponibilidad:boolean
 
+}
+
+export interface nombreRestaurant {
+    nombreRestaurant : string;
 }

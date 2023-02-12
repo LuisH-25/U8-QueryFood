@@ -61,6 +61,7 @@ export interface nombreRestaurant {
 }
 export interface FormTwilio {
     nombre: string;
+    comentario : string;
     calificacion: number;
     telefono: string;
   }

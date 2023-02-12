@@ -66,8 +66,8 @@ function FormRegisterTwilio() {
               <label htmlFor="nombre">Comentario:</label>
               <input
                 type="text"
-                id="nombre"
-                name="nombre"
+                id="comentario"
+                name="comentario"
                 value={formData.comentario}
                 onChange={handleInputChange}
               />

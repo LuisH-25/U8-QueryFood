@@ -52,7 +52,7 @@ const Platos: React.FC<PlatosCardProps> = () => {
     return (
         <section className="specials">
             <article className="specials-topbar">
-            <h1>La lucha{nombre && nombre[0].nombreRestaurante}</h1>
+            <h1>{nombre && nombre[0].nombreRestaurante}</h1>
                 {/* <a className="action-button" href={require('../../../assets/menu.webp')} target="_blank" rel="noreferrer">Lista de Restaurantes</a> */}
             </article>
 

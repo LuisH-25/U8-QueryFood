@@ -59,3 +59,8 @@ export interface Plate{
 export interface nombreRestaurant {
     nombreRestaurante : string;
 }
+export interface FormTwilio {
+    nombre: string;
+    calificacion: number;
+    telefono: string;
+  }

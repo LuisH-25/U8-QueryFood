@@ -28,8 +28,7 @@ function FormRegisterTwilio() {
     setSubmitted(true);
   };
 
- 
-  
+
     return (
       <div className="reservation-form">
         {submitted ? (

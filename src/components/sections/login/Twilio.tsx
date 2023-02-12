@@ -4,7 +4,7 @@ import {FormTwilio} from '../../../interface/queryfood'
 
 
 function FormRegisterTwilio() {
-      const [formData, setFormData] = useState<FormTwilio>({
+    const [formData, setFormData] = useState<FormTwilio>({
     nombre: '',
     calificacion: 0,
     telefono: '',
@@ -33,7 +33,7 @@ function FormRegisterTwilio() {
     return (
       <div className="reservation-form">
         {submitted ? (
-          <div className='confirmation-message '>
+          <div>
             Gracias {formData.nombre} por dejar tu calificación de {formData.calificacion} estrellas y continuar con el proceso de reserva.
           </div>
         ) : (

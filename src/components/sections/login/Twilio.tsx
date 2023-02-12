@@ -6,6 +6,7 @@ import {FormTwilio} from '../../../interface/queryfood'
 function FormRegisterTwilio() {
       const [formData, setFormData] = useState<FormTwilio>({
     nombre: '',
+    comentario: '',
     calificacion: 0,
     telefono: '',
   });
@@ -58,6 +59,16 @@ function FormRegisterTwilio() {
                 id="calificacion"
                 name="calificacion"
                 value={formData.calificacion}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="reservation-form">
+              <label htmlFor="nombre">Comentario:</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                value={formData.comentario}
                 onChange={handleInputChange}
               />
             </div>

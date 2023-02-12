@@ -1,10 +1,10 @@
 import React from 'react'
-import FormTwilio from "../sections/login/Twilio";
+import FormRegisterTwilio from "../sections/login/Twilio";
 
 function Twilio() {
   return (
     <>
-      <FormTwilio />
+      <FormRegisterTwilio />
     </>
   );
 }

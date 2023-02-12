@@ -162,7 +162,7 @@ const SignUp = () => {
            </div>
 
 
-           <button className="btn btn-primary" type="submit">Registrarse</button>
+           <button className="action-button" type="submit">Registrar Restaurante</button>
 
 
 

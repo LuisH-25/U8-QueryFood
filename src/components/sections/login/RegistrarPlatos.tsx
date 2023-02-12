@@ -2,7 +2,7 @@ import React, {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const SignUp = () => {
+const FormRegistrarPlatos = () => {
  
   const [platos, setPlatos] = useState<{
     nombre_plato: String;
@@ -131,7 +131,7 @@ const SignUp = () => {
 
                   <p className="text-center">
           
-                    <button className="btn btn-primary" type="submit">Registrar plato</button>
+                    <button className="action-button" type="submit">Registrar plato</button>
 
                   </p>
 
@@ -153,4 +153,4 @@ const SignUp = () => {
   )
 };
 
-export default SignUp;
+export default FormRegistrarPlatos;

@@ -7,8 +7,9 @@ import Login from "../components/pages/Login"
 import Profile from "../components/pages/Profile"
 import Logout from '../components/pages/Logout';
 import ResgistrarRestaurante from '../components/pages/RegistrarRestaurante';
-import Platos from '../components/sections/headingPages/Platos';
-
+import RegistrarPlatos from '../components/pages/RegistrarPlatos';
+import Plato from '../components/pages/Platos'
+import Twilio from '../components/pages/Twilio';
 function Routing() {
   return (
     <Routes>
@@ -18,11 +19,16 @@ function Routing() {
       <Route path="/login" element={<Login />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/registrar_restaurants" element={<ResgistrarRestaurante />} />
+      <Route path="/registrar_platos" element={<RegistrarPlatos />} />
       <Route path="/signup" element={<Profile />} />
-      <Route path="/verPlatos"  />
+      <Route path="/verPlatos" element={<Plato />} />
+      <Route path="/twilioCalification" element={<Twilio />} />
+
+
     </Routes>
   );
 }
+
 
 export default Routing;
 

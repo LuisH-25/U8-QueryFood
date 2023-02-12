@@ -7,11 +7,12 @@ const PlatosCard: React.FC<PlatosCardProps> = (props) => {
       <article className="menu-card">
         <img src={props.imagen} alt="Special Menu"></img>
         <section className="menu-card-content">
-          <h1>{props.nombre_plato}</h1>
-          <h3>{props.precio}</h3>
-          <h3>{props.descripcion}</h3>
-          <h3>Disponible:</h3>
-          <h3>{saySomething(props.disponibilidad)}</h3>
+          <h2>{props.nombre_plato}</h2>
+          <p>{props.precio}</p>
+          <p>{props.descripcion}</p>
+          <p>Disponible:</p>
+          <p>{saySomething(props.disponibilidad)}</p>
+          <Link className="special-button" to="/twilioCalification">Contactar</Link>
         </section>
       </article>
 
